@@ -7,20 +7,19 @@ import {
   watch,
 } from '@nuxtjs/composition-api';
 
-export const useBundles = (firstvalue) => {
+export const useFetchingComposable = (firstvalue) => {
   const context = useContext();
   const firstRef = ref(null);
   const secondRef = ref(null);
 
-  const {fetch} = useFetch(async () => {
+  const { fetch } = useFetch(async () => {
     firstRef.value = null;
     secondRef.value = null;
 
-    console.log("usebundles");
-    const fetchresult = await context.app.$axios.get('https://rickandmortyapi.com/api/character');
-    console.log(fetchresult);
+    console.log("useFetchingComposable");
+    const fetchResult = await context.app.$axios.get('https://rickandmortyapi.com/api/character');
 
-    firstRef.value = fetchresult.data.results;
+    firstRef.value = fetchResult.data.results;
     secondRef.value = "test445456";
   });
 

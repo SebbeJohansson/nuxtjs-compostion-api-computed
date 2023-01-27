@@ -4,19 +4,24 @@
 import {
   defineComponent,
   ref,
-  useFetch,
-  useContext,
   computed,
 } from '@nuxtjs/composition-api';
+import { useFetchingComposable } from '~/composables/useFetchingComposable';
 
-import {useBundles} from '~/composables/useBundles';
 export default defineComponent({
-  setup() {
-
+  props: {
+    value: {
+      type: String,
+      default: () => undefined,
+    }
+  },
+  setup(props) {
     const buttonValue = ref(1);
-
     const firstvalue = computed(() => buttonValue.value);
-    const bundles = useBundles(firstvalue);
+    const computedFromProp = computed(() => props.value);
+
+    const bundles = useFetchingComposable(computedFromProp);
+
     return {
       buttonValue,
       bundles,
@@ -29,6 +34,8 @@ export default defineComponent({
   <div>
     {{ buttonValue }}
     <button @click="buttonValue++">Click</button>
+    <pre>
     {{bundles}}
+    </pre>
   </div>
 </template>
