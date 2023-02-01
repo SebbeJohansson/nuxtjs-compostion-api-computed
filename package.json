@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build --modern client",
+    "build-webpack-analys": "nuxt build -a",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
